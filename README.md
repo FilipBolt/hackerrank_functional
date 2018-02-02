@@ -1,4 +1,4 @@
-## Sumamry ##
+## Summary ##
 
 Repository for Hackerrank solutions for functional programming.
 
