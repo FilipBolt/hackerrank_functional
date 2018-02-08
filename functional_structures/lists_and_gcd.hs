@@ -29,15 +29,14 @@ readLines n
         x <- getLine
         xs <- readLines (n - 1)
         let el = listToPairs $ Data.List.map (read :: String -> Int) (words x)
-        let ret = (el : xs)
+        let ret = el : xs
         return ret
 
 allMinFactors :: [Int] -> [Map Int Int] -> [(Int, Int)]
 allMinFactors factors maps = [(f, getMinFactorInMaps maps f) | f <- factors]
 
 getFactorsFromPairs :: [[(Int, Int)]] -> [[Int]]
-getFactorsFromPairs [] = []
-getFactorsFromPairs (x : xs) = Data.List.map (fst) x : getFactorsFromPairs xs
+getFactorsFromPairs = Data.List.map (Data.List.map fst)
 
 getMinFactorInMaps :: [Map Int Int] -> Int -> Int
 getMinFactorInMaps maps factor = Data.List.foldr (\m acc -> min (maybe 0 (+0) (Map.lookup factor m)) acc ) (maxBound :: Int) maps
@@ -46,10 +45,9 @@ listToPairs :: [Int] -> [(Int, Int)]
 listToPairs xs = Data.List.foldr (\(idx, n) acc -> (n, xs !! (idx + 1)) : acc) [] (Data.List.filter (even . fst) (zip [0..] xs))
 
 castToMaps :: [[(Int, Int)]] -> [Map Int Int]
-castToMaps [] = []
-castToMaps (x:xs) = Map.fromList x : castToMaps xs
+castToMaps = Data.List.map Map.fromList
 
-pairsForPrintout xs = Data.List.foldr (\(x, y) acc -> x : y : acc) [] xs
+pairsForPrintout = Data.List.foldr (\(x, y) acc -> x : y : acc) []
 
 -- getMultipleLines :: Int -> IO [Integer]
 -- getMultipleLines n
