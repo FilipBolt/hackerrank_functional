@@ -3,7 +3,7 @@ main = do
     n_temp <- getLine
     let n = read n_temp :: Int
     targets <- readLines n
-    let t = divide $ map (((!!) fibos)) targets
+    let t = divide $ map (fibos !!) targets
     putStr $ specialPrint t
     return ()
 
