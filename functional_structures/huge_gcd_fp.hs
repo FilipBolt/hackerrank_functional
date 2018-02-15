@@ -40,9 +40,9 @@ count = List.foldr updateMap Map.empty
                     | Map.member v counts = Map.adjust succ v counts
                     | otherwise           = Map.insert v 1 counts
 
-
 getMinFactor :: Map.Map Integer Integer -> Map.Map Integer Integer -> Integer -> Maybe Integer
 getMinFactor a b fact = min (Map.lookup fact a) (Map.lookup fact b)
 
 fromJust :: Maybe a -> a
+fromJust Nothing = _
 fromJust (Just x) = x
