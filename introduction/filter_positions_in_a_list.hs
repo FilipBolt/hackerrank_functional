@@ -5,3 +5,6 @@ f lst = map snd (filter (odd . fst) (zip [0..] lst))
 main = do
    inputdata <- getContents
    mapM_ (putStrLn. show). f. map read. lines $ inputdata
+
+
+x = map (\x -> x + 1) [1, 2, 3]
